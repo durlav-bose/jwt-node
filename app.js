@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-
+const authRoutes = require("./routes/authRoutes");
 const app = express();
 
 // middleware
@@ -19,7 +19,9 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
 // routes
 app.get('/', (req, res) => res.render('home'));
 app.get('/smoothies', (req, res) => res.render('smoothies'));
+app.use(authRoutes);
 
+// listening
 app.listen(3000, () => {
     console.log("listening on port 3000");
 })
